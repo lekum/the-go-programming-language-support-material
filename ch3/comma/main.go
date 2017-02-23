@@ -13,7 +13,7 @@ func comma(s string) string {
 		s = s[1:]
 	}
 
-	if decimalSeparator := strings.LastIndexAny(s, "."); decimalSeparator > 0 {
+	if decimalSeparator := strings.LastIndex(s, "."); decimalSeparator > 0 {
 		decimal = "." + s[decimalSeparator+1:]
 		s = s[:decimalSeparator]
 
