@@ -20,6 +20,10 @@ func appendInt(x []int, v int) []int {
 }
 
 func main() {
-	a := []int{1, 2, 3}
-	fmt.Println(appendInt(a, 4))
+	var x, y []int
+	for i := 0; i < 10; i++ {
+		y = appendInt(x, i)
+		fmt.Printf("%d cap=%d\t%v\n", i, cap(y), y)
+		x = y
+	}
 }
