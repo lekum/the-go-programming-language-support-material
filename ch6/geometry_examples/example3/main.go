@@ -8,6 +8,9 @@ import (
 
 func main() {
 	p := geometry.Point{2, 3}
-	p.ScaleBy(2.5)
-	fmt.Println("p:", p)
+	q := geometry.Point{0, 2}
+	distanceFromP := p.Distance
+	fmt.Println(distanceFromP(q))
+	distance := geometry.Point.Distance
+	fmt.Println(distance(p, q))
 }
