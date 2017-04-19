@@ -18,6 +18,7 @@ type Track struct {
 
 var tracks = []*Track{
 	{"Go", "Delilah", "From the Roots Up", 2012, length("3m38s")},
+	{"ARGS", "Randalph", "Moby", 1992, length("3m37s")},
 	{"Go", "Moby", "Moby", 1992, length("3m37s")},
 	{"Go Ahead", "Alicia Keys", "As I Am", 2007, length("4m36s")},
 	{"Ready 2 Go", "Martin Solveig", "Smash", 2011, length("4m24s")},
@@ -49,6 +50,10 @@ func (x byArtist) Less(i, j int) bool { return x[i].Artist < x[j].Artist }
 func (x byArtist) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
 func main() {
+	printTracks(tracks)
+	fmt.Println()
 	sort.Sort(byArtist(tracks))
+	printTracks(tracks)
+	sort.Slice(tracks, func(i, j int) bool { return tracks[i].Title < tracks[j].Title })
 	printTracks(tracks)
 }
