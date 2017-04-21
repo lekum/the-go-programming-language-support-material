@@ -22,14 +22,14 @@ func (db database) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		item := r.URL.Query().Get("item")
 		price, ok := db[item]
 		if !ok {
-			w.WriteHeader(http.StatusNotFound) // 404
-			fmt.Fprintf(w, "no such item: %v\n", item)
+			msg := fmt.Sprintf("no such item: %v\n", item)
+			http.Error(w, msg, http.StatusNotFound)
 			return
 		}
 		fmt.Fprintf(w, "%s\n", price)
 	default:
-		w.WriteHeader(http.StatusNotFound) // 404
-		fmt.Fprintf(w, "no such page: %s\n", r.URL)
+		msg := fmt.Sprintf("no such page: %s\n", r.URL)
+		http.Error(w, msg, http.StatusNotFound)
 	}
 }
 
