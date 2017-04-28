@@ -18,12 +18,12 @@ type Var string
 type literal float64
 
 type unary struct {
-	op run // one of '+', '-'
+	op rune // one of '+', '-'
 	x  Expr
 }
 
 type binary struct {
-	op   run // one of '+', '-', '*', '/'
+	op   rune // one of '+', '-', '*', '/'
 	x, y Expr
 }
 
