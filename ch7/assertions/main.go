@@ -18,5 +18,6 @@ func main() {
 	if !ok {
 		fmt.Fprintf(os.Stderr, "Interface %T is not of type *bytes.Buffer\n", w)
 	}
-	fmt.Println(f, b)
+	fmt.Fprintf(os.Stdout, "%v => %T\n", f, f)
+	fmt.Fprintf(os.Stdout, "%v => %T\n", b, b)
 }
