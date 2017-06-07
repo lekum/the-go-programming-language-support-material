@@ -10,13 +10,26 @@ var (
 
 func Deposit(amount int) {
 	mu.Lock()
-	balance = balance + amount
-	mu.Unlock()
+	defer mu.Unlock()
+	deposit(amount)
 }
 
 func Balance() int {
 	mu.Lock()
-	b := balance
-	mu.Unlock()
-	return b
+	defer mu.Unlock()
+	return balance
 }
+
+func Withdraw(amount int) bool {
+	mu.Lock()
+	defer mu.Unlock()
+	deposit(-amount)
+	if balance < 0 {
+		deposit(amount)
+		return false // insufficient funds
+	}
+	return true
+}
+
+// This function requeres that the lock be held.
+func deposit(amount int) { balance += amount }
