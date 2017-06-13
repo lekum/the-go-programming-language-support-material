@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"sync"
 	"time"
 )
 
@@ -23,18 +24,27 @@ func incomingURLs() []string {
 		"https://lekum.org",
 		"https://gnupg.org",
 		"https://lekum.org",
+		"https://elpais.es",
+		"https://gnupg.org",
+		"https://lekum.org",
 	}
 }
 
 func main() {
 	m := memo.New(httpGetBody)
+	var n sync.WaitGroup
 	for _, url := range incomingURLs() {
-		start := time.Now()
-		value, err := m.Get(url)
-		if err != nil {
-			log.Print(err)
-		}
-		fmt.Printf("%s, %s, %d bytes\n",
-			url, time.Since(start), len(value.([]byte)))
+		n.Add(1)
+		go func(url string) {
+			start := time.Now()
+			value, err := m.Get(url)
+			if err != nil {
+				log.Print(err)
+			}
+			fmt.Printf("%s, %s, %d bytes\n",
+				url, time.Since(start), len(value.([]byte)))
+			n.Done()
+		}(url)
 	}
+	n.Wait()
 }
