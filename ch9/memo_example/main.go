@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/lekum/the-go-programming-language-support-material/ch9/memo1"
+	"github.com/lekum/the-go-programming-language-support-material/ch9/memo2"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -24,7 +24,6 @@ func incomingURLs() []string {
 		"https://lekum.org",
 		"https://gnupg.org",
 		"https://lekum.org",
-		"https://elpais.es",
 		"https://gnupg.org",
 		"https://lekum.org",
 	}
