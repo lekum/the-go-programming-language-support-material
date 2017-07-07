@@ -1,12 +1,13 @@
 package word
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 	"time"
 )
 
-func TestIsPalindrom(t *testing.T) {
+func TestIsPalindrome(t *testing.T) {
 	var tests = []struct {
 		input string
 		want  bool
@@ -64,4 +65,12 @@ func BenchmarkIsPalindrome(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		IsPalindrome("A man, a plan, a canal: Panama")
 	}
+}
+
+func ExampleIsPalindrome() {
+	fmt.Println(IsPalindrome("A man, a plan, a canal: Panama"))
+	fmt.Println(IsPalindrome("palindrome"))
+	// Output:
+	// true
+	// false
 }
